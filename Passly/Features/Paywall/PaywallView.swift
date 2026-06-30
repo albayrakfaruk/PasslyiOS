@@ -18,6 +18,7 @@ struct PaywallView: View {
                     headline(compact: compact)
                     featureGrid(compact: compact)
                     productPicker(compact: compact)
+                    securePaymentNotice(compact: compact)
                     purchaseButton
                     complianceLinks(compact: compact)
                 }
@@ -109,25 +110,35 @@ struct PaywallView: View {
         .disabled(isPurchasing)
     }
 
-    private func complianceLinks(compact: Bool) -> some View {
-        VStack(spacing: compact ? 7 : 9) {
-            Text("Monthly renews automatically at \(PasslyProduct.monthly.displayPrice)/month until cancelled. Lifetime is a one-time purchase. Purchases are managed by your Apple ID.")
-                .font(compact ? .caption2 : .caption)
-                .foregroundStyle(PasslyTheme.textSecondary)
-                .multilineTextAlignment(.center)
-                .lineLimit(3)
-                .minimumScaleFactor(0.86)
-            HStack {
-                Button("Restore Purchases") {
-                    Task { await restore() }
-                }
-                Spacer()
-                Link("Terms", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
-                Link("Privacy", destination: URL(string: "https://passly.app/privacy")!)
-            }
-            .font((compact ? Font.caption : Font.footnote).weight(.medium))
-            .foregroundStyle(PasslyTheme.textSecondary)
+    private func securePaymentNotice(compact: Bool) -> some View {
+        Label {
+            Text("Payment is secured by Apple")
+                .font((compact ? Font.caption : Font.footnote).weight(.semibold))
+        } icon: {
+            Image(systemName: "lock.shield.fill")
+                .font(compact ? .caption : .footnote)
         }
+        .foregroundStyle(PasslyTheme.textSecondary)
+        .padding(.top, compact ? 0 : 2)
+    }
+
+    private func complianceLinks(compact: Bool) -> some View {
+        HStack(spacing: 0) {
+            Button("Restore Purchases") {
+                Task { await restore() }
+            }
+            .frame(maxWidth: .infinity)
+
+            Link("Terms", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
+                .frame(maxWidth: .infinity)
+
+            Link("Privacy", destination: URL(string: "https://passly.app/privacy")!)
+                .frame(maxWidth: .infinity)
+        }
+        .font((compact ? Font.caption : Font.footnote).weight(.medium))
+        .foregroundStyle(PasslyTheme.textSecondary)
+        .multilineTextAlignment(.center)
+        .padding(.top, compact ? 0 : 2)
     }
 
     private func purchaseSelectedProduct() async {
