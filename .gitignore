@@ -1,0 +1,6 @@
+.DS_Store
+DerivedData/
+artifacts/screenshots/
+
+firebase/functions/node_modules/
+firebase/functions/lib/

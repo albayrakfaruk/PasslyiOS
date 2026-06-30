@@ -1,0 +1,13 @@
+{
+  "parameters": {
+    "walletExportEnabled": { "defaultValue": { "value": "true" } },
+    "nfcImportEnabled": { "defaultValue": { "value": "true" } },
+    "pdfImportEnabled": { "defaultValue": { "value": "true" } },
+    "shareExtensionEnabled": { "defaultValue": { "value": "true" } },
+    "cloudSyncEnabled": { "defaultValue": { "value": "true" } },
+    "passAutoUpdateEnabled": { "defaultValue": { "value": "false" } },
+    "lifetimePurchaseEnabled": { "defaultValue": { "value": "false" } },
+    "aiImportSuggestionsEnabled": { "defaultValue": { "value": "false" } },
+    "betaTemplatesEnabled": { "defaultValue": { "value": "false" } }
+  }
+}

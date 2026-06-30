@@ -1,0 +1,42 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "add.card" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Card"
+          }
+        }
+      }
+    },
+    "nfc.safety.warning" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passly cannot copy payment cards, access cards, hotel keys, car keys, transit cards, or other secure NFC credentials."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passly ödeme kartlarını, erişim kartlarını, otel anahtarlarını, araba anahtarlarını, toplu taşıma kartlarını veya diğer güvenli NFC kimlik bilgilerini kopyalayamaz."
+          }
+        }
+      }
+    },
+    "onboarding.wallet.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create beautiful Apple Wallet passes"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

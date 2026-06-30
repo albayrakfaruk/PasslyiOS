@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    match /users/{uid} {
+      allow read, create, update, delete: if isOwner(uid)
+        && !request.resource.data.keys().hasAny(['admin', 'certificateConfig', 'entitlementServerTruth']);
+
+      match /cards/{cardId} {
+        allow read, create, update, delete: if isOwner(uid)
+          && !request.resource.data.keys().hasAny(['passSigningStatus', 'adminOverride']);
+      }
+
+      match /passJobs/{jobId} {
+        allow read: if isOwner(uid);
+        allow create, update, delete: if false;
+      }
+    }
+  }
+}
